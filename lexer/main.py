@@ -88,7 +88,7 @@ def lexer(codigoFuente:str)->list[tuple[str]]:
         # Recorremos la lista token-AFDdelmismo para tratar de validar un posible lexema n+1 (n inicialmente)
         #para poder guardar cada posible token para el lexema armado
         for (tipo_token, funcionAFD) in tokens_posibles:            
-            if funcionAFD(lexema.lower()):
+            if funcionAFD(lexema):
                 posibles_tokensN1.append((tipo_token, lexema))
 
         

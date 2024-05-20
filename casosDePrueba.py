@@ -40,9 +40,13 @@ LISTA_PRUEBAS:list[Pruebas] = [
              ('call', 'CALL'), ('blanckSpace', ' '), ('id', 'calculateFactorial'), (';', ';'), ('blanckSpace', ' '), ('end', 'END'), ('#', '#')],
             "Ejecutamos un programa funcional que calcula un factorial con una funcion (Note que el else se utiliza como id pues, en nuestra version de PL0 este no existe)", 3),
 
-    Pruebas("",
-            [],
-            "", 4)
+    Pruebas("VAR x;\n\nPROCEDURE check;\nBEGIN\n\tIF ODD x THEN x:=x+1;\nEND;\n\nBEGIN\n\tx:=5;\n\tCALL check;\nEND#",
+            [('var', 'VAR'), ('blanckSpace', ' '), ('id', 'x'), (';', ';'), ('blanckSpace', ' '), ('procedure', 'PROCEDURE'), ('blanckSpace', ' '), ('id','check'),
+             (';',';'), ('blanckSpace', ' '), ('begin', 'BEGIN'), ('blanckSpace', ' '), ('if', 'IF'), ('blanckSpace', ' '), ('odd', 'ODD'), ('blanckSpace', ' '), 
+             ('id', 'x'), ('blanckSpace', ' '), ('then', 'THEN'), ('blanckSpace', ' '), ('id', 'x'), ('assign',':='), ('id','x'), ('sumOperator', '+'), ('num', '1'), (';',';'),
+             ('blanckSpace', ' '), ('end', 'END'), (';', ';'), ('blanckSpace', ' '), ('begin', 'BEGIN'), ('blanckSpace', ' '), ('id', 'x'), ('assign', ':='), ('num', '5'),
+             (';',';'), ('blanckSpace', ' '), ('call', 'CALL'), ('blanckSpace', ' '),('id', 'check'), (';',';'),('blanckSpace', ' '),('end', 'END'), ('#','#')],
+            "Programa sin errores que suma 1 a la variable si es impar", 4)
 
 ]
 

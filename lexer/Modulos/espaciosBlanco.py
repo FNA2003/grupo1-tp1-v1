@@ -1,5 +1,5 @@
 def afd_whiteSpace(cadena:str)->int:
-    """  r = λ | \n | \t  """
+    """  r = ' ' | \n | \t  """
 
     estado_actual:int = 0
     estados_aceptados:list[int] = [1]

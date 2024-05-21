@@ -123,7 +123,7 @@ def lexer(codigoFuente:str)->list[tuple[str]]:
                 #de mayor longitud a la cadena actual (y no se encontro por que la cadena tiene longitud + 1) o 
                 # debemos de avisar de un error.
                 if errorLong:
-                    return "ERROR!\nToken invalido:\t" + lexema
+                    return f"ERROR!\nToken invalido:\t'{lexema}'"
                 
                 errorLong = True
         

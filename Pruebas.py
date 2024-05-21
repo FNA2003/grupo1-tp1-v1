@@ -21,6 +21,6 @@ class Pruebas:
         outputString += f"\n\t\x1b[30m-->Descripcion:\x1b[0m{self.__getDescripcion()}"
         outputString += f"\n\t\x1b[36m-->Codigo a ejecutar:\x1b[0m\n{self.getCodigo()}"
         outputString += f"\x1b[33m\n\t-->Ejecutando...\x1b[0m"
-        outputString += f"\x1b[35m\n\t-->Resultado obtenido:\x1b[0m {lexer(self.getCodigo())}\n\n"
+        outputString += f"\x1b[35m\n\t-->Resultado obtenido:\x1b[0m {lexer(self.getCodigo())}\n\n\n\n"
 
         return outputString

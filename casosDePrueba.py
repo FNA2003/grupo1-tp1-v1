@@ -44,7 +44,10 @@ LISTA_PRUEBAS:list[Pruebas] = [
         "Cadenas sintactictamente erroneas y lexicamente correcta son aceptadas", 13),
 
     Pruebas("var contador, numero;\n\nprocedure contarHasta;\nbegin\n\twhile contador < numero do\n\t\tcontador := contador +1;\nend;\n\nbegin\n\tnumero := 5;\n\tcall contarHasta;\nend#",
-        "Ejemplo de programa con contador en una funcion", 14)
+        "Ejemplo de programa con contador en una funcion", 14),
+
+    Pruebas("111if0\n\n\n\t    23then9999do  \t 1while\n\n\n\tbegin46end                 1var0const22call\n\t70procedure65",
+            "Keywords con numeros seran id's o numeros concatenados con id's/keywords (segun como combinemos letras-numeros)", 15)
 ]
 
 

@@ -1,4 +1,11 @@
-tipos_de_tokens_con_sus_automatas = []
+from AFDs import *
+
+tipos_de_tokens_con_sus_automatas = [("if",afd_if), ("then",afd_then), ("call",afd_call), ("begin",afd_begin), 
+    ("end",afd_end), ("while",afd_while), ("do",afd_do), ("odd",afd_odd), 
+    ("const",afd_const), ("var",afd_var), ("comparation",afd_comparation), ("assign", afd_asignation),
+    ("procedure", afd_procedure),("id",afd_id), ("operation",afd_operation),  
+    ("#", afd_end_program), ("numbers",afd_numbers),  ("coma", afd_coma), (";",afd_punto_y_coma), 
+    ("(",afd_parentesis_inicial), (")",afd_parentesis_final), ("blanckSpace", afd_white_space)]
 
 def lexer(codigoFuente):
 

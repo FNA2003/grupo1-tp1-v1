@@ -579,7 +579,7 @@ def afd_parentesis_inicial(cadena):
 #================================================================================================
 # Automata de parentesis final
 #================================================================================================
-def afd_parentesis_inicial(cadena):
+def afd_parentesis_final(cadena):
     """El estado aceptado es 1"""
     estado = 0
     caracteres = [')']
@@ -631,3 +631,38 @@ def afd_white_space(cadena):
     
     return estado_final
 
+
+#================================================================================================
+# Automata de inicializacion de procedimiento
+#================================================================================================
+def afd_procedure(cadena):
+    """El estado aceptado es 5"""
+    estado = 0
+    caracteres = ['p', 'r', 'o', 'c', 'e', 'd', 'u', 'r', 'e']
+    delta = {
+    0: {'p': 1, 'r': 't', 'o': 't', 'c': 't', 'e': 't', 'd': 't', 'u': 't', 'r': 't', 'e': 't'},
+    1: {'p': 't', 'r': 2, 'o': 't', 'c': 't', 'e': 't', 'd': 't', 'u': 't', 'r': 't', 'e': 't'},
+    2: {'p': 't', 'r': 't', 'o': 3, 'c': 't', 'e': 't', 'd': 't', 'u': 't', 'r': 't', 'e': 't'},
+    3: {'p': 't', 'r': 't', 'o': 't', 'c': 4, 'e': 't', 'd': 't', 'u': 't', 'r': 't', 'e': 't'},
+    4: {'p': 't', 'r': 't', 'o': 't', 'c': 't', 'e': 5, 'd': 't', 'u': 't', 'r': 't', 'e': 't'},
+    5: {'p': 't', 'r': 't', 'o': 't', 'c': 't', 'e': 't', 'd': 6, 'u': 't', 'r': 't', 'e': 't'},
+    6: {'p': 't', 'r': 't', 'o': 't', 'c': 't', 'e': 't', 'd': 't', 'u': 7, 'r': 't', 'e': 't'},
+    7: {'p': 't', 'r': 't', 'o': 't', 'c': 't', 'e': 't', 'd': 't', 'u': 't', 'r': 8, 'e': 't'},
+    8: {'p': 't', 'r': 't', 'o': 't', 'c': 't', 'e': 't', 'd': 't', 't': 't', 'r': 't', 'e': 9},
+    9: {'p': 't', 'r': 't', 'o': 't', 'c': 't', 'e': 't', 'd': 't', 't': 't', 'r': 't', 'e': 't'},
+    't': {'p': 't', 'r': 't', 'o': 't', 'c': 't', 'e': 't', 'd': 't', 't': 't', 'r': 't', 'e': 't'}
+    }
+
+    for caracter in cadena:
+        if (estado <= 9) and (caracter in caracteres):
+            estado = delta[estado][caracter]
+        elif (estado == 't') or not(caracter in caracteres):
+            estado_final = 'trampa'
+            break
+
+    if estado == 9:
+        estado_final = 'aceptado'
+    elif estado < 9:
+        estado_final = 'no aceptado'
+
+    return estado_final

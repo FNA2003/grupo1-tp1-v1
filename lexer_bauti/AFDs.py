@@ -3,6 +3,10 @@
 #================================================================================================
 def afd_id(cadena):
     """El estado aceptado es 1"""
+    estados_sin_trampa = [0, 1]
+    estados_aceptados = [1]
+    estados_no_aceptados = [0]
+    estado_trampa = 't'
     estado = 0
     caracteres = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r',
                 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K',
@@ -29,16 +33,18 @@ def afd_id(cadena):
     }
 
     for caracter in cadena:
-        if (estado <= 1) and (caracter in caracteres):
+        if (estado in estados_sin_trampa) and (caracter in caracteres):
             estado = delta[estado][caracter]
         elif (estado == 't') or not(caracter in caracteres):
-            estado_final = 'trampa'
+            estado = 't'
             break
 
-    if estado == 1:
+    if estado in estados_aceptados:
         estado_final = 'aceptado'
-    elif estado < 1:
+    elif estado in estados_no_aceptados:
         estado_final = 'no aceptado'
+    elif estado == estado_trampa:
+        estado_final = 'trampa'
     
     return estado_final
 
@@ -48,6 +54,10 @@ def afd_id(cadena):
 #================================================================================================
 def afd_numbers(cadena):
     """El estado aceptado es 1"""
+    estados_sin_trampa = [0, 1]
+    estados_aceptados = [1]
+    estados_no_aceptados = [0]
+    estado_trampa = 't'
     estado = 0
     caracteres = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
     delta = {
@@ -57,15 +67,18 @@ def afd_numbers(cadena):
     }
 
     for caracter in cadena:
-        if (estado <= 1) and (caracter in caracteres):
+        if (estado in estados_sin_trampa) and (caracter in caracteres):
             estado = delta[estado][caracter]
         elif (estado == 't') or not(caracter in caracteres):
-            estado_final = 'trampa'
+            estado = 't'
+            break
 
-    if estado == 1:
+    if estado in estados_aceptados:
         estado_final = 'aceptado'
-    elif estado < 1:
+    elif estado in estados_no_aceptados:
         estado_final = 'no aceptado'
+    elif estado == estado_trampa:
+        estado_final = 'trampa'
     
     return estado_final
 
@@ -75,6 +88,10 @@ def afd_numbers(cadena):
 #================================================================================================
 def afd_end_program(cadena):
     """El estado aceptado es 1"""
+    estados_sin_trampa = [0, 1]
+    estados_aceptados = [1]
+    estados_no_aceptados = [0]
+    estado_trampa = 't'
     estado = 0
     caracteres = ['#']
     delta = {
@@ -84,16 +101,18 @@ def afd_end_program(cadena):
     }
 
     for caracter in cadena:
-        if (estado <= 1) and (caracter in caracteres):
+        if (estado in estados_sin_trampa) and (caracter in caracteres):
             estado = delta[estado][caracter]
         elif (estado == 't') or not(caracter in caracteres):
-            estado_final = 'trampa'
+            estado = 't'
             break
 
-    if estado == 1:
+    if estado in estados_aceptados:
         estado_final = 'aceptado'
-    elif estado < 1:
+    elif estado in estados_no_aceptados:
         estado_final = 'no aceptado'
+    elif estado == estado_trampa:
+        estado_final = 'trampa'
 
     return estado_final
 
@@ -103,6 +122,10 @@ def afd_end_program(cadena):
 #================================================================================================
 def afd_const(cadena):
     """El estado aceptado es 5"""
+    estados_sin_trampa = [0, 1, 2, 3, 4, 5]
+    estados_aceptados = [5]
+    estados_no_aceptados = [0, 1, 2, 3, 4]
+    estado_trampa = 't'
     estado = 0
     caracteres = ['c', 'o', 'n', 's', 't']
     delta = {
@@ -116,16 +139,18 @@ def afd_const(cadena):
     }
 
     for caracter in cadena:
-        if (estado <= 5) and (caracter in caracteres):
+        if (estado in estados_sin_trampa) and (caracter in caracteres):
             estado = delta[estado][caracter]
         elif estado == 't' or not(caracter in caracteres):
-            estado_final = 'trampa'
+            estado = 't'
             break
 
-    if estado == 5:
+    if estado in estados_aceptados:
         estado_final = 'aceptado'
-    elif estado < 5:
+    elif estado in estados_no_aceptados:
         estado_final = 'no aceptado'
+    elif estado == estado_trampa:
+        estado_final = 'trampa'
 
     return estado_final
 
@@ -135,6 +160,10 @@ def afd_const(cadena):
 #================================================================================================
 def afd_var(cadena):
     """El estado aceptado es 3"""
+    estados_sin_trampa = [0, 1, 2, 3]
+    estados_aceptados = [3]
+    estados_no_aceptados = [0, 1, 2]
+    estado_trampa = 't'
     estado = 0
     caracteres = ['v', 'a', 'r']
     delta = {
@@ -146,16 +175,18 @@ def afd_var(cadena):
     }
 
     for caracter in cadena:
-        if (estado <= 3) and (caracter in caracteres):
+        if (estado in estados_sin_trampa) and (caracter in caracteres):
             estado = delta[estado][caracter]
         elif estado == 't' or not(caracter in caracteres):
-            estado_final = 'trampa'
+            estado = 't'
             break
 
-    if estado == 3:
+    if estado in estados_aceptados:
         estado_final = 'aceptado'
-    elif estado < 3:
+    elif estado in estados_no_aceptados:
         estado_final = 'no aceptado'
+    elif estado == estado_trampa:
+        estado_final = 'trampa'
 
     return estado_final
 
@@ -165,6 +196,10 @@ def afd_var(cadena):
 #================================================================================================
 def afd_coma(cadena):
     """El estado aceptado es 1"""
+    estados_sin_trampa = [0, 1]
+    estados_aceptados = [1]
+    estados_no_aceptados = [0]
+    estado_trampa = 't'
     estado = 0
     caracteres = [',']
     delta = {
@@ -174,16 +209,18 @@ def afd_coma(cadena):
     }
 
     for caracter in cadena:
-        if (estado <= 1) and (caracter in caracteres):
+        if (estado in estados_sin_trampa) and (caracter in caracteres):
             estado = delta[estado][caracter]
         elif (estado == 't') or not(caracter in caracteres):
-            estado_final = 'trampa'
+            estado = 't'
             break
 
-    if estado == 1:
+    if estado in estados_aceptados:
         estado_final = 'aceptado'
-    elif estado < 1:
+    elif estado in estados_no_aceptados:
         estado_final = 'no aceptado'
+    elif estado == estado_trampa:
+        estado_final = 'trampa'
 
     return estado_final
 
@@ -193,6 +230,10 @@ def afd_coma(cadena):
 #================================================================================================
 def afd_punto_y_coma(cadena):
     """El estado aceptado es 1"""
+    estados_sin_trampa = [0, 1]
+    estados_aceptados = [1]
+    estados_no_aceptados = [0]
+    estado_trampa = 't'
     estado = 0
     caracteres = [';']
     delta = {
@@ -202,16 +243,18 @@ def afd_punto_y_coma(cadena):
     }
 
     for caracter in cadena:
-        if (estado <= 1) and (caracter in caracteres):
+        if (estado in estados_sin_trampa) and (caracter in caracteres):
             estado = delta[estado][caracter]
         elif (estado == 1) or (estado == 't') or not(caracter in caracteres):
-            estado_final = 'trampa'
+            estado = 't'
             break
 
-    if estado == 1:
+    if estado in estados_aceptados:
         estado_final = 'aceptado'
-    elif estado < 1:
+    elif estado in estados_no_aceptados:
         estado_final = 'no aceptado'
+    elif estado == estado_trampa:
+        estado_final = 'trampa'
 
     return estado_final
 
@@ -221,6 +264,10 @@ def afd_punto_y_coma(cadena):
 #================================================================================================
 def afd_asignation(cadena):
     """El estado aceptado es 2"""
+    estados_sin_trampa = [0, 1, 2]
+    estados_aceptados = [2]
+    estados_no_aceptados = [0, 1]
+    estado_trampa = 't'
     estado = 0
     caracteres = [':', '=']
     delta = {
@@ -231,16 +278,18 @@ def afd_asignation(cadena):
     }
 
     for caracter in cadena:
-        if (estado <= 2) and (caracter in caracteres):
+        if (estado in estados_sin_trampa) and (caracter in caracteres):
             estado = delta[estado][caracter]
         elif (estado == 't') or not(caracter in caracteres):
-            estado_final = 'trampa'
+            estado = 't'
             break
 
-    if estado == 2:
+    if estado in estados_aceptados:
         estado_final = 'aceptado'
-    elif estado < 2:
+    elif estado in estados_no_aceptados:
         estado_final = 'no aceptado'
+    elif estado == estado_trampa:
+        estado_final = 'trampa'
 
     return estado_final
 
@@ -250,6 +299,10 @@ def afd_asignation(cadena):
 #================================================================================================
 def afd_call(cadena):
     """El estado aceptado es 4"""
+    estados_sin_trampa = [0, 1, 2, 3, 4]
+    estados_aceptados = [4]
+    estados_no_aceptados = [0, 1, 2, 3]
+    estado_trampa = 't'
     estado = 0
     caracteres = ['c', 'a', 'l', 'l']
     delta = {
@@ -262,16 +315,18 @@ def afd_call(cadena):
     }
 
     for caracter in cadena:
-        if (estado <= 4) and (caracter in caracteres):
+        if (estado in estados_sin_trampa) and (caracter in caracteres):
             estado = delta[estado][caracter]
         elif (estado == 't') or not(caracter in caracteres):
-            estado_final = 'trampa'
+            estado = 't'
             break
 
-    if estado == 4:
+    if estado in estados_aceptados:
         estado_final = 'aceptado'
-    elif estado < 4:
+    elif estado in estados_no_aceptados:
         estado_final = 'no aceptado'
+    elif estado == estado_trampa:
+        estado_final = 'trampa'
 
     return estado_final
 
@@ -281,6 +336,10 @@ def afd_call(cadena):
 #================================================================================================
 def afd_begin(cadena):
     """El estado aceptado es 5"""
+    estados_sin_trampa = [0, 1, 2, 3, 4, 5]
+    estados_aceptados = [5]
+    estados_no_aceptados = [0, 1, 2, 3, 4]
+    estado_trampa = 't'
     estado = 0
     caracteres = ['b', 'e', 'g', 'i', 'n']
     delta = {
@@ -294,16 +353,18 @@ def afd_begin(cadena):
     }
 
     for caracter in cadena:
-        if (estado <= 5) and (caracter in caracteres):
+        if (estado in estados_sin_trampa) and (caracter in caracteres):
             estado = delta[estado][caracter]
         elif (estado == 't') or not(caracter in caracteres):
-            estado_final = 'trampa'
+            estado = 't'
             break
 
-    if estado == 5:
+    if estado in estados_aceptados:
         estado_final = 'aceptado'
-    elif estado < 5:
+    elif estado in estados_no_aceptados:
         estado_final = 'no aceptado'
+    elif estado == estado_trampa:
+        estado_final = 'trampa'
 
     return estado_final
 
@@ -313,6 +374,10 @@ def afd_begin(cadena):
 #================================================================================================
 def afd_end(cadena):
     """El estado aceptado es 3"""
+    estados_sin_trampa = [0, 1, 2, 3]
+    estados_aceptados = [3]
+    estados_no_aceptados = [0, 1, 2]
+    estado_trampa = 't'
     estado = 0
     caracteres = ['e', 'n', 'd']
     delta = {
@@ -324,16 +389,18 @@ def afd_end(cadena):
     }
 
     for caracter in cadena:
-        if (estado <= 3) and (caracter in caracteres):
+        if (estado in estados_sin_trampa) and (caracter in caracteres):
             estado = delta[estado][caracter]
         elif (estado == 't') or not(caracter in caracteres):
-            estado_final = 'trampa'
+            estado = 't'
             break
 
-    if estado == 3:
+    if estado in estados_aceptados:
         estado_final = 'aceptado'
-    elif estado < 3:
+    elif estado in estados_no_aceptados:
         estado_final = 'no aceptado'
+    elif estado == estado_trampa:
+        estado_final = 'trampa'
 
     return estado_final
 
@@ -343,6 +410,10 @@ def afd_end(cadena):
 #================================================================================================
 def afd_if(cadena):
     """El estado aceptado es 2"""
+    estados_sin_trampa = [0, 1, 2]
+    estados_aceptados = [2]
+    estados_no_aceptados = [0, 1]
+    estado_trampa = 't'
     estado = 0
     caracteres = ['i', 'f']
     delta = {
@@ -353,16 +424,18 @@ def afd_if(cadena):
     }
 
     for caracter in cadena:
-        if (estado <= 2) and (caracter in caracteres):
+        if (estado in estados_sin_trampa) and (caracter in caracteres):
             estado = delta[estado][caracter]
         elif (estado == 't') or not(caracter in caracteres):
-            estado_final = 'trampa'
+            estado = 't'
             break
 
-    if estado == 2:
+    if estado in estados_aceptados:
         estado_final = 'aceptado'
-    elif estado < 2:
+    elif estado in estados_no_aceptados:
         estado_final = 'no aceptado'
+    elif estado == estado_trampa:
+        estado_final = 'trampa'
 
     return estado_final
 
@@ -372,6 +445,10 @@ def afd_if(cadena):
 #================================================================================================
 def afd_then(cadena):
     """El estado aceptado es 4"""
+    estados_sin_trampa = [0, 1, 2, 3, 4]
+    estados_aceptados = [4]
+    estados_no_aceptados = [0, 1, 2, 3]
+    estado_trampa = 't'
     estado = 0
     caracteres = ['t', 'h', 'e', 'n']
     delta = {
@@ -384,16 +461,18 @@ def afd_then(cadena):
     }
 
     for caracter in cadena:
-        if (estado <= 4) and (caracter in caracteres):
+        if (estado in estados_sin_trampa) and (caracter in caracteres):
             estado = delta[estado][caracter]
         elif (estado == 't') or not(caracter in caracteres):
-            estado_final = 'trampa'
+            estado = 't'
             break
 
-    if estado == 4:
+    if estado in estados_aceptados:
         estado_final = 'aceptado'
-    elif estado < 4:
+    elif estado in estados_no_aceptados:
         estado_final = 'no aceptado'
+    elif estado == estado_trampa:
+        estado_final = 'trampa'
 
     return estado_final
 
@@ -403,6 +482,10 @@ def afd_then(cadena):
 #================================================================================================
 def afd_while(cadena):
     """El estado aceptado es 5"""
+    estados_sin_trampa = [0, 1, 2, 3, 4, 5]
+    estados_aceptados = [5]
+    estados_no_aceptados = [0, 1, 2, 3, 4]
+    estado_trampa = 't'
     estado = 0
     caracteres = ['w', 'h', 'i', 'l', 'e']
     delta = {
@@ -416,16 +499,18 @@ def afd_while(cadena):
     }
 
     for caracter in cadena:
-        if (estado <= 5) and (caracter in caracteres):
+        if (estado in estados_sin_trampa) and (caracter in caracteres):
             estado = delta[estado][caracter]
         elif (estado == 't') or not(caracter in caracteres):
-            estado_final = 'trampa'
+            estado = 't'
             break
 
-    if estado == 5:
+    if estado in estados_aceptados:
         estado_final = 'aceptado'
-    elif estado < 5:
+    elif estado in estados_no_aceptados:
         estado_final = 'no aceptado'
+    elif estado == estado_trampa:
+        estado_final = 'trampa'
 
     return estado_final
 
@@ -435,6 +520,10 @@ def afd_while(cadena):
 #================================================================================================
 def afd_do(cadena):
     """El estado aceptado es 2"""
+    estados_sin_trampa = [0, 1, 2]
+    estados_aceptados = [2]
+    estados_no_aceptados = [0, 1]
+    estado_trampa = 't'
     estado = 0
     caracteres = ['d', 'o']
     delta = {
@@ -445,16 +534,18 @@ def afd_do(cadena):
     }
 
     for caracter in cadena:
-        if (estado <= 2) and (caracter in caracteres):
+        if (estado in estados_sin_trampa) and (caracter in caracteres):
             estado = delta[estado][caracter]
         elif (estado == 't') or not(caracter in caracteres):
-            estado_final = 'trampa'
+            estado = 't'
             break
 
-    if estado == 2:
+    if estado in estados_aceptados:
         estado_final = 'aceptado'
-    elif estado < 2:
+    elif estado in estados_no_aceptados:
         estado_final = 'no aceptado'
+    elif estado == estado_trampa:
+        estado_final = 'trampa'
 
     return estado_final
 
@@ -464,6 +555,10 @@ def afd_do(cadena):
 #================================================================================================
 def afd_odd(cadena):
     """El estado aceptado es 3"""
+    estados_sin_trampa = [0, 1, 2, 3]
+    estados_aceptados = [3]
+    estados_no_aceptados = [0, 1, 2]
+    estado_trampa = 't'
     estado = 0
     caracteres = ['o', 'd', 'd']
     delta = {
@@ -475,16 +570,18 @@ def afd_odd(cadena):
     }
 
     for caracter in cadena:
-        if (estado <= 3) and (caracter in caracteres):
+        if (estado in estados_sin_trampa) and (caracter in caracteres):
             estado = delta[estado][caracter]
         elif (estado == 't') or not(caracter in caracteres):
-            estado_final = 'trampa'
+            estado = 't'
             break
 
-    if estado == 3:
+    if estado in estados_aceptados:
         estado_final = 'aceptado'
-    elif estado < 3:
+    elif estado in estados_no_aceptados:
         estado_final = 'no aceptado'
+    elif estado == estado_trampa:
+        estado_final = 'trampa'
 
     return estado_final
 
@@ -494,7 +591,10 @@ def afd_odd(cadena):
 #================================================================================================
 def afd_comparation(cadena):
     """Los estados aceptado son 1, 2 y 3"""
+    estados_sin_trampa = [0, 1, 2, 3]
     estados_aceptados = [1, 2, 3]
+    estados_no_aceptados = [0]
+    estado_trampa = 't'
     estado = 0
     caracteres = ['<', '>', '=']
     delta = {
@@ -506,16 +606,18 @@ def afd_comparation(cadena):
     }
 
     for caracter in cadena:
-        if (estado <= 3) and (caracter in caracteres):
+        if (estado in estados_sin_trampa) and (caracter in caracteres):
             estado = delta[estado][caracter]
         elif (estado == 't') or not(caracter in caracteres):
-            estado_final = 'trampa'
+            estado = 't'
             break
 
     if estado in estados_aceptados:
         estado_final = 'aceptado'
-    elif estado == 0:
+    elif estado in estados_no_aceptados:
         estado_final = 'no aceptado'
+    elif estado == estado_trampa:
+        estado_final = 'trampa'
 
     return estado_final
 
@@ -525,6 +627,10 @@ def afd_comparation(cadena):
 #================================================================================================
 def afd_operation(cadena):
     """El estado aceptado es 1"""
+    estados_sin_trampa = [0, 1]
+    estados_aceptados = [1]
+    estados_no_aceptados = [0]
+    estado_trampa = 't'
     estado = 0
     caracteres = ['+', '-', '*', '/']
     delta = {
@@ -534,16 +640,18 @@ def afd_operation(cadena):
     }
 
     for caracter in cadena:
-        if (estado <= 1) and (caracter in caracteres):
+        if (estado in estados_sin_trampa) and (caracter in caracteres):
             estado = delta[estado][caracter]
         elif (estado == 't') or not(caracter in caracteres):
-            estado_final = 'trampa'
+            estado = 't'
             break
 
-    if estado == 1:
+    if estado in estados_aceptados:
         estado_final = 'aceptado'
-    elif estado < 1:
+    elif estado in estados_no_aceptados:
         estado_final = 'no aceptado'
+    elif estado == estado_trampa:
+        estado_final = 'trampa'
 
     return estado_final
 
@@ -553,6 +661,10 @@ def afd_operation(cadena):
 #================================================================================================
 def afd_parentesis_inicial(cadena):
     """El estado aceptado es 1"""
+    estados_sin_trampa = [0, 1]
+    estados_aceptados = [1]
+    estados_no_aceptados = [0]
+    estado_trampa = 't'
     estado = 0
     caracteres = ['(']
     delta = {
@@ -562,16 +674,18 @@ def afd_parentesis_inicial(cadena):
     }
 
     for caracter in cadena:
-        if (estado <= 1) and (caracter in caracteres):
+        if (estado in estados_sin_trampa) and (caracter in caracteres):
             estado = delta[estado][caracter]
         elif (estado == 't') or not(caracter in caracteres):
-            estado_final = 'trampa'
+            estado = 't'
             break
 
-    if estado == 1:
+    if estado in estados_aceptados:
         estado_final = 'aceptado'
-    elif estado < 1:
+    elif estado in estados_no_aceptados:
         estado_final = 'no aceptado'
+    elif estado == estado_trampa:
+        estado_final = 'trampa'
 
     return estado_final
 
@@ -581,6 +695,10 @@ def afd_parentesis_inicial(cadena):
 #================================================================================================
 def afd_parentesis_final(cadena):
     """El estado aceptado es 1"""
+    estados_sin_trampa = [0, 1]
+    estados_aceptados = [1]
+    estados_no_aceptados = [0]
+    estado_trampa = 't'
     estado = 0
     caracteres = [')']
     delta = {
@@ -590,16 +708,18 @@ def afd_parentesis_final(cadena):
     }
 
     for caracter in cadena:
-        if (estado <= 1) and (caracter in caracteres):
+        if (estado in estados_sin_trampa) and (caracter in caracteres):
             estado = delta[estado][caracter]
         elif (estado == 't') or not(caracter in caracteres):
-            estado_final = 'trampa'
+            estado = 't'
             break
 
-    if estado == 1:
+    if estado in estados_aceptados:
         estado_final = 'aceptado'
-    elif estado < 1:
+    elif estado in estados_no_aceptados:
         estado_final = 'no aceptado'
+    elif estado == estado_trampa:
+        estado_final = 'trampa'
 
     return estado_final
 
@@ -609,6 +729,10 @@ def afd_parentesis_final(cadena):
 #================================================================================================
 def afd_white_space(cadena):
     """El estado aceptado es 1"""
+    estados_sin_trampa = [0, 1]
+    estados_aceptados = [1]
+    estados_no_aceptados = [0]
+    estado_trampa = 't'
     estado = 0
     caracteres = [' ', '\n', '\t']
     delta = {
@@ -618,16 +742,18 @@ def afd_white_space(cadena):
     }
 
     for caracter in cadena:
-        if (estado <= 1) and (caracter in caracteres):
+        if (estado in estados_sin_trampa) and (caracter in caracteres):
             estado = delta[estado][caracter]
         elif (estado == 't') or not(caracter in caracteres):
-            estado_final = 'trampa'
+            estado = 't'
             break
 
-    if estado == 1:
+    if estado in estados_aceptados:
         estado_final = 'aceptado'
-    elif estado < 1:
+    elif estado in estados_no_aceptados:
         estado_final = 'no aceptado'
+    elif estado == estado_trampa:
+        estado_final = 'trampa'
     
     return estado_final
 
@@ -636,33 +762,40 @@ def afd_white_space(cadena):
 # Automata de inicializacion de procedimiento
 #================================================================================================
 def afd_procedure(cadena):
-    """El estado aceptado es 5"""
+    """El estado aceptado es 9"""
+    estados_sin_trampa = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    estados_aceptados = [9]
+    estados_no_aceptados = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+    estado_trampa = 't'
     estado = 0
     caracteres = ['p', 'r', 'o', 'c', 'e', 'd', 'u', 'r', 'e']
     delta = {
-    0: {'p': 1, 'r': 't', 'o': 't', 'c': 't', 'e': 't', 'd': 't', 'u': 't', 'r': 't', 'e': 't'},
-    1: {'p': 't', 'r': 2, 'o': 't', 'c': 't', 'e': 't', 'd': 't', 'u': 't', 'r': 't', 'e': 't'},
-    2: {'p': 't', 'r': 't', 'o': 3, 'c': 't', 'e': 't', 'd': 't', 'u': 't', 'r': 't', 'e': 't'},
-    3: {'p': 't', 'r': 't', 'o': 't', 'c': 4, 'e': 't', 'd': 't', 'u': 't', 'r': 't', 'e': 't'},
-    4: {'p': 't', 'r': 't', 'o': 't', 'c': 't', 'e': 5, 'd': 't', 'u': 't', 'r': 't', 'e': 't'},
-    5: {'p': 't', 'r': 't', 'o': 't', 'c': 't', 'e': 't', 'd': 6, 'u': 't', 'r': 't', 'e': 't'},
-    6: {'p': 't', 'r': 't', 'o': 't', 'c': 't', 'e': 't', 'd': 't', 'u': 7, 'r': 't', 'e': 't'},
-    7: {'p': 't', 'r': 't', 'o': 't', 'c': 't', 'e': 't', 'd': 't', 'u': 't', 'r': 8, 'e': 't'},
-    8: {'p': 't', 'r': 't', 'o': 't', 'c': 't', 'e': 't', 'd': 't', 't': 't', 'r': 't', 'e': 9},
-    9: {'p': 't', 'r': 't', 'o': 't', 'c': 't', 'e': 't', 'd': 't', 't': 't', 'r': 't', 'e': 't'},
-    't': {'p': 't', 'r': 't', 'o': 't', 'c': 't', 'e': 't', 'd': 't', 't': 't', 'r': 't', 'e': 't'}
+    0: {'p': 1, 'r': 't', 'o': 't', 'c': 't', 'e': 't', 'd': 't', 'u': 't'},
+    1: {'p': 't', 'r': 2, 'o': 't', 'c': 't', 'e': 't', 'd': 't', 'u': 't'},
+    2: {'p': 't', 'r': 't', 'o': 3, 'c': 't', 'e': 't', 'd': 't', 'u': 't'},
+    3: {'p': 't', 'r': 't', 'o': 't', 'c': 4, 'e': 't', 'd': 't', 'u': 't'},
+    4: {'p': 't', 'r': 't', 'o': 't', 'c': 't', 'e': 5, 'd': 't', 'u': 't'},
+    5: {'p': 't', 'r': 't', 'o': 't', 'c': 't', 'e': 't', 'd': 6, 'u': 't'},
+    6: {'p': 't', 'r': 't', 'o': 't', 'c': 't', 'e': 't', 'd': 't', 'u': 7},
+    7: {'p': 't', 'r': 8, 'o': 't', 'c': 't', 'e': 't', 'd': 't', 'u': 't'},
+    8: {'p': 't', 'r': 't', 'o': 't', 'c': 't', 'e': 9, 'd': 't', 'u': 't'},
+    9: {'p': 't', 'r': 't', 'o': 't', 'c': 't', 'e': 't', 'd': 't', 'u': 't'},
+    't': {'p': 't', 'r': 't', 'o': 't', 'c': 't', 'e': 't', 'd': 't', 'u': 't'}
     }
 
     for caracter in cadena:
-        if (estado <= 9) and (caracter in caracteres):
+        if (estado in estados_sin_trampa) and (caracter in caracteres):
             estado = delta[estado][caracter]
         elif (estado == 't') or not(caracter in caracteres):
+            estado = 't'
             estado_final = 'trampa'
             break
 
-    if estado == 9:
+    if estado in estados_aceptados:
         estado_final = 'aceptado'
-    elif estado < 9:
+    elif estado in estados_no_aceptados:
         estado_final = 'no aceptado'
+    elif estado == estado_trampa:
+        estado_final = 'trampa'
 
     return estado_final

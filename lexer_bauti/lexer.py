@@ -18,6 +18,8 @@ def lexer(codigoFuente):
     antiguos_tipos_de_tokens_posibles = []
 
     lista_final_de_tokens_con_sus_tipos = []
+
+    analizar_lexema_mas_grande = False
     
     # Recorro el codigo fuente del prg, formando un lexema 1 caracter mas largo por cada iteracion hasta hallarle una clasificacion
     # Una vez hallada la clasificacion, paso a recorrer lo que resta del codigo fuente aplicando el mismo procedimiento

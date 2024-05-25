@@ -23,7 +23,7 @@ def lexer(codigoFuente):
     
     # Recorro el codigo fuente del prg, formando un lexema 1 caracter mas largo por cada iteracion hasta hallarle una clasificacion
     # Una vez hallada la clasificacion, paso a recorrer lo que resta del codigo fuente aplicando el mismo procedimiento
-    while contador <= len(codigoFuente):
+    while contador <= (len(codigoFuente) + 1):
         fin_del_lexema = contador
         lexema = codigoFuente[inicio_del_lexema:fin_del_lexema]
         
@@ -82,5 +82,6 @@ def lexer(codigoFuente):
         
         elif len(nuevos_tipos_de_tokens_posibles) == 0 and len(antiguos_tipos_de_tokens_posibles) == 0:
             print('Error: caracter o expresion invalidos')
+            break
     
     return lista_final_de_tokens_con_sus_tipos

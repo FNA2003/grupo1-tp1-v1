@@ -16,7 +16,7 @@ class Pruebas:
     def ejecutarPrueba(self):
         outputString:str = ""
 
-        # Forma visual (en consola, aca  no, claramente) de ejecutar las pruebas con coleres
+        # Forma visual (en consola, aca  no, claramente) de ejecutar las pruebas con colores
         outputString = f"\x1b[32m->Prueba N{self.__getNumeroPrueba()}\x1b[0m"
         outputString += f"\n\t\x1b[30m-->Descripcion:\x1b[0m{self.__getDescripcion()}"
         outputString += f"\n\t\x1b[36m-->Codigo a ejecutar:\x1b[0m\n{self.getCodigo()}"

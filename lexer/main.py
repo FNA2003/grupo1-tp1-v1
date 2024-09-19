@@ -131,4 +131,15 @@ def lexer(codigoFuente:str)->list[tuple[str]]:
         posicion_actual += 1
 
     # Y, al finalizar el analisis lexicografico, devolvemos los tokens hallados
+    i = 0
+    ln = len(tokens)
+    while i < ln:
+        if tokens[i][0] == "blanckSpace":
+            del tokens[i]
+            i = 0
+            ln = len(tokens)
+        i += 1
+    
+    tokens.append(("EOF", "EOF"))
+
     return tokens

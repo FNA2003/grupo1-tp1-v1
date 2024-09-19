@@ -4,7 +4,7 @@ tipos_de_tokens_con_sus_automatas = [("if",afd_if), ("then",afd_then), ("call",a
     ("end",afd_end), ("while",afd_while), ("do",afd_do), ("odd",afd_odd), 
     ("const",afd_const), ("var",afd_var), ("comparation",afd_comparation), ("assign", afd_asignation),
     ("procedure", afd_procedure),("id",afd_id), ("operation",afd_operation),  
-    ("#", afd_end_program), ("numbers",afd_numbers),  ("coma", afd_coma), (";",afd_punto_y_coma), 
+    ("#", afd_end_program), ("num",afd_numbers),  (",", afd_coma), (";",afd_punto_y_coma), 
     ("(",afd_parentesis_inicial), (")",afd_parentesis_final), ("blanckSpace", afd_white_space)]
 
 def lexer(codigoFuente):
@@ -70,7 +70,8 @@ def lexer(codigoFuente):
             tipo_de_token_definitivo = antiguos_tipos_de_tokens_posibles[0] # El tipo de token con mayor prioridad esta en la posicion 0
 
             # Agrego el lexema ya clasificado como token, junto con su clasificacion, a la 'lista_final_de_tokens_con_sus_tipos'
-            lista_final_de_tokens_con_sus_tipos.append((tipo_de_token_definitivo, token)) 
+            if tipo_de_token_definitivo != 'blanckSpace':
+                lista_final_de_tokens_con_sus_tipos.append((tipo_de_token_definitivo, token)) 
 
             # como ya clasifique el token extraido del codigo fuente desde la posicion 'inicio_del_token' hasta la posicion
             # anterior a 'fin_del_token' ahora analizo el token que comienza en la posicion anterior a 'fin_del_token'
@@ -82,6 +83,6 @@ def lexer(codigoFuente):
         
         elif len(nuevos_tipos_de_tokens_posibles) == 0 and len(antiguos_tipos_de_tokens_posibles) == 0:
             print('Error: caracter o expresion invalidos')
-            break
+            return
     
     return lista_final_de_tokens_con_sus_tipos

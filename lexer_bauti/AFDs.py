@@ -623,20 +623,54 @@ def afd_comparation(cadena):
 
 
 #================================================================================================
-# Automata de operadores matematicos
+# Automata de operadores matematicos de suma y resta
 #================================================================================================
-def afd_operation(cadena):
+def afd_sum_operation(cadena):
     """El estado aceptado es 1"""
     estados_sin_trampa = [0, 1]
     estados_aceptados = [1]
     estados_no_aceptados = [0]
     estado_trampa = 't'
     estado = 0
-    caracteres = ['+', '-', '*', '/']
+    caracteres = ['+', '-']
     delta = {
-    0: {'+': 1, '-': 1, '*': 1, '/': 1},
-    1: {'+': 't', '-': 't', '*': 't', '/': 't'},
-    't': {'+': 't', '-': 't', '*': 't', '/': 't'}
+    0: {'+': 1, '-': 1},
+    1: {'+': 't', '-': 't'},
+    't': {'+': 't', '-': 't'}
+    }
+
+    for caracter in cadena:
+        if (estado in estados_sin_trampa) and (caracter in caracteres):
+            estado = delta[estado][caracter]
+        elif (estado == 't') or not(caracter in caracteres):
+            estado = 't'
+            break
+
+    if estado in estados_aceptados:
+        estado_final = 'aceptado'
+    elif estado in estados_no_aceptados:
+        estado_final = 'no aceptado'
+    elif estado == estado_trampa:
+        estado_final = 'trampa'
+
+    return estado_final
+
+
+#================================================================================================
+# Automata de operadores matematicos de producto y division
+#================================================================================================
+def afd_prod_operation(cadena):
+    """El estado aceptado es 1"""
+    estados_sin_trampa = [0, 1]
+    estados_aceptados = [1]
+    estados_no_aceptados = [0]
+    estado_trampa = 't'
+    estado = 0
+    caracteres = ['*', '/']
+    delta = {
+    0: {'*': 1, '/': 1},
+    1: {'*': 't', '/': 't'},
+    't': {'*': 't', '/': 't'}
     }
 
     for caracter in cadena:

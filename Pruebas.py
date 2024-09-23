@@ -113,3 +113,35 @@ print('Cadena clasificada: ', lexer(cadena))
 print('Resultado del parser: ', end='')
 parser(lexer(cadena))
 print('==============================================================================================================================', end='\n\n')
+
+#====================================================================================================================================
+# Prueba 6
+#====================================================================================================================================
+print('Prueba N° 6:')
+
+cadena = """
+            const max = 100;
+            var i, sum, temp;
+            procedure calculateSum;
+            begin
+                i := 1;
+                sum := 0;
+                while i <= max do
+                begin
+                    if odd i then
+                        sum := sum + i;
+                    i := i + 1
+                end
+            end;
+            begin
+                call calculateSum;
+                if sum > 1000 then
+                    temp := sum / 2;
+                    temp := sum * 2
+            end#
+        """
+
+print('Cadena clasificada: ', lexer(cadena))
+print('Resultado del parser: ', end='')
+parser(lexer(cadena))
+print('==============================================================================================================================', end='\n\n')

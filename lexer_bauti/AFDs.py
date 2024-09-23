@@ -560,13 +560,13 @@ def afd_odd(cadena):
     estados_no_aceptados = [0, 1, 2]
     estado_trampa = 't'
     estado = 0
-    caracteres = ['o', 'd', 'd']
+    caracteres = ['o', 'd']
     delta = {
-    0: {'o': 1, 'd': 't', 'd': 't'},
-    1: {'o': 't', 'd': 2, 'd': 't'},
-    2: {'o': 't', 'd': 't', 'd': 3},
-    3: {'o': 't', 'd': 't', 'd': 't'},
-    't': {'o': 't', 'd': 't', 'd': 't'}
+    0: {'o': 1, 'd': 't'},
+    1: {'o': 't', 'd': 2},
+    2: {'o': 't', 'd': 3},
+    3: {'o': 't', 'd': 't'},
+    't': {'o': 't', 'd': 't'}
     }
 
     for caracter in cadena:

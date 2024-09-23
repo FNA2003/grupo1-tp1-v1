@@ -304,14 +304,14 @@ def afd_call(cadena):
     estados_no_aceptados = [0, 1, 2, 3]
     estado_trampa = 't'
     estado = 0
-    caracteres = ['c', 'a', 'l', 'l']
+    caracteres = ['c', 'a', 'l']
     delta = {
-    0: {'c': 1, 'a': 't', 'l': 't', 'l': 't'},
-    1: {'c': 't', 'a': 2, 'l': 't', 'l': 't'},
-    2: {'c': 't', 'a': 't', 'l': 3, 'l': 't'},
-    3: {'c': 't', 'a': 't', 'l': 't', 'l': 4},
-    4: {'c': 't', 'a': 't', 'l': 't', 'l': 't'},
-    't': {'c': 't', 'a': 't', 'l': 't', 'l': 't'}
+    0: {'c': 1, 'a': 't', 'l': 't'},
+    1: {'c': 't', 'a': 2, 'l': 't'},
+    2: {'c': 't', 'a': 't', 'l': 3},
+    3: {'c': 't', 'a': 't', 'l': 4},
+    4: {'c': 't', 'a': 't', 'l': 't'},
+    't': {'c': 't', 'a': 't', 'l': 't'}
     }
 
     for caracter in cadena:

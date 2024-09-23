@@ -1,26 +1,115 @@
-from lexer.main import lexer
+from lexer_bauti.lexer import *
+from parser_bauti.parser import *
 
-class Pruebas:
-    def __init__(self, codigo:str, descripcion:str, numeroPrueba:int) ->None:
-        self.codigo = codigo
-        self.descripcion = descripcion
-        self.numeroPrueba = numeroPrueba
-    
-    def getCodigo(self) -> str:
-        return self.codigo
-    def __getDescripcion(self) -> str:
-        return self.descripcion
-    def __getNumeroPrueba(self) -> int:
-        return self.numeroPrueba
+#====================================================================================================================================
+# Prueba 1
+#====================================================================================================================================
+print('==============================================================================================================================', end='\n\n')
+print('Prueba N° 1:')
 
-    def ejecutarPrueba(self):
-        outputString:str = ""
 
-        # Forma visual (en consola, aca  no, claramente) de ejecutar las pruebas con colores
-        outputString = f"\x1b[32m->Prueba N{self.__getNumeroPrueba()}\x1b[0m"
-        outputString += f"\n\t\x1b[30m-->Descripcion:\x1b[0m{self.__getDescripcion()}"
-        outputString += f"\n\t\x1b[36m-->Codigo a ejecutar:\x1b[0m\n{self.getCodigo()}"
-        outputString += f"\x1b[33m\n\t-->Ejecutando...\x1b[0m"
-        outputString += f"\x1b[35m\n\t-->Resultado obtenido:\x1b[0m {lexer(self.getCodigo())}\n\n\n\n"
+cadena = 'var pepito,pancho;procedure cuadrado;begin pepito:=pancho*pancho end;begin end#'
 
-        return outputString
+print('Cadena clasificada: ', lexer(cadena))
+print('Resultado del parser: ', end='')
+parser(lexer(cadena))
+print('==============================================================================================================================', end='\n\n')
+
+#====================================================================================================================================
+# Prueba 2
+#====================================================================================================================================
+print('Prueba N° 2:')
+
+cadena = """
+            var numero, triple ;
+            procedure tripleDeUnNumero;
+            begin
+            numero := 3;
+            triple := numero * 3
+            end;
+            begin
+            call tripleDeUnNumero
+            end#
+        """
+
+print('Cadena clasificada: ', lexer(cadena))
+print('Resultado del parser: ', end='')
+parser(lexer(cadena))
+print('==============================================================================================================================', end='\n\n')
+
+#====================================================================================================================================
+# Prueba 3
+#====================================================================================================================================
+print('Prueba N° 3:')
+
+cadena = """
+            var numero, triple ;
+            procedure tripleDeUnNumero;
+            begin
+            numero := 3;
+            triple := numero * 3
+            end;
+            procedure dobleDeUnNumero;
+            begin
+            numero := 3;
+            triple := numero * 2
+            end;
+            begin
+            call tripleDeUnNumero;
+            call dobleDeUnNumero
+            end#
+        """
+
+print('Cadena clasificada: ', lexer(cadena))
+print('Resultado del parser: ', end='')
+parser(lexer(cadena))
+print('==============================================================================================================================', end='\n\n')
+
+#====================================================================================================================================
+# Prueba 4
+#====================================================================================================================================
+print('Prueba N° 4:')
+
+cadena = """
+            const numero1 = 10, numero2 = 12 ;
+            begin
+                if numero1 <= numero2 then
+                    begin
+                        call print
+                    end
+            end#
+        """
+
+print('Cadena clasificada: ', lexer(cadena))
+print('Resultado del parser: ', end='')
+parser(lexer(cadena))
+print('==============================================================================================================================', end='\n\n')
+
+#====================================================================================================================================
+# Prueba 5
+#====================================================================================================================================
+print('Prueba N° 5:')
+
+cadena = """
+            const numero1 = 1, numero2 = 2 ;
+            procedure esVerdadero;
+                var verdadero, falso;
+                begin
+                    verdadero := true;
+                    falso := false;
+
+                    while verdadero <> falso do
+                        begin
+                            numero1 := numero1 + numero2;
+                            call returnTrue
+                        end
+                end;
+            begin
+                call esVerdadero
+            end#
+        """
+
+print('Cadena clasificada: ', lexer(cadena))
+print('Resultado del parser: ', end='')
+parser(lexer(cadena))
+print('==============================================================================================================================', end='\n\n')

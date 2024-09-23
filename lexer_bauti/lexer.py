@@ -1,4 +1,4 @@
-from AFDs import *
+from .AFDs import *
 
 tipos_de_tokens_con_sus_automatas = [("if",afd_if), ("then",afd_then), ("call",afd_call), 
     ("begin",afd_begin), ("end",afd_end), ("while",afd_while), ("do",afd_do), ("odd",afd_odd), 
@@ -10,6 +10,7 @@ tipos_de_tokens_con_sus_automatas = [("if",afd_if), ("then",afd_then), ("call",a
 
 def lexer(codigoFuente):
 
+    codigoFuente += ' ' # para que pueda reconocerse el ultimo caracter (si la cadena pertence debería ser #)
     contador = 1
     inicio_del_lexema = 0
     fin_del_lexema = 0
@@ -45,7 +46,7 @@ def lexer(codigoFuente):
             elif estado == 'no aceptado':
                 analizar_lexema_mas_grande = True
 
-
+        
         # Si el estado del afd del tipo de token al evaluar el lexema es 'no aceptado', entonces paso a analizar el lexema 
         # resultante de añadir un caracter al lexema extraido del codigo fuente evaluado actualmente
         if analizar_lexema_mas_grande == True:
@@ -54,7 +55,7 @@ def lexer(codigoFuente):
             nuevos_tipos_de_tokens_posibles = []
             contador += 1
 
-        # Si todos los estados de los afd de los tipos de token al evaluar el lexema son 'no aceptado' o 'trampa', y si la lista de
+        # Si todos los estados de los afd de los tipos de token al evaluar el lexema son o 'trampa', y si la lista de
         # 'nuevos_tipos_de_tokens_posibles' no esta vacia, quiere decir que puedo agregar un caracter mas al lexema extraido del 
         # codigo fuente evaluado actualmente, y verificar si el nuevo lexema resultante pertenece a algun tipo de token
         elif len(nuevos_tipos_de_tokens_posibles) >= 1:

@@ -1,5 +1,5 @@
-from lexer_bauti.lexer import *
-from parser_bauti.parser import *
+from lexer.lexer import *
+from parser.parser import *
 
 #====================================================================================================================================
 # Prueba 1
@@ -162,6 +162,7 @@ cadena = """
                     max := b
             end#
         """
+# Falla por el 'else'
 
 print('Cadena clasificada: ', lexer(cadena))
 print('Resultado del parser: ', end='')
@@ -186,6 +187,7 @@ cadena = """
                 end
             end
         """
+# Falla porque no tiene el simbolo de fin de programa '#'
 
 print('Cadena clasificada: ', lexer(cadena))
 print('Resultado del parser: ', end='')
@@ -209,6 +211,7 @@ cadena = """
                     cero := 1
             end#
         """
+# Falla por poner 'do' en vez de 'then' en la declaracion 'if condition then'
 
 print('Cadena clasificada: ', lexer(cadena))
 print('Resultado del parser: ', end='')

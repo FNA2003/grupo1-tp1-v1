@@ -23,7 +23,7 @@ def parser(classified_string):
      counter = 0
      t = string[counter]
      error = False
-     derivations = [] # guardar derivaciones
+     productions = [] # guardar producciones
 
      while (counter <= len(string)-1) and not(error):
           top = stack[0]
@@ -40,7 +40,7 @@ def parser(classified_string):
                     stack.pop(0)
                     production = M[t][top]
                     stack = M[t][top] + stack
-                    derivations.append((top, production))  # guardar la derivacion
+                    productions.append((top, production))  # guardar la produccion
                else:
                     error = True
           else:
@@ -51,7 +51,20 @@ def parser(classified_string):
           return None
      else:
           print('La cadena SI pertenece al lenguaje')
-          # imprimir las derivaciones realizadas
-          for derivation in derivations:
-            print(f"{derivation[0]} -> {' '.join(derivation[1])}")
+          # imprimir las producciones utilizadas para realizar la derivacion
+          print('')
+          for production in productions:
+            print(f"{production[0]} -> {' '.join(production[1])}")
+          
+          # imprmir la derivacion de la cadena
+          print('\n', "===============================================================", end='\n\n')
+          last_derivation= ["Program"]
+          print("Program", end='')
+          for production in productions:
+               non_terminal = production[0]
+               non_terminal_index = last_derivation.index(non_terminal)
+               right_side_derivation = last_derivation[0 : non_terminal_index] + production[1] + (last_derivation[(non_terminal_index + 1):] if non_terminal_index < (len(last_derivation) + 1) else [])
+               print(f" -> {' '.join(right_side_derivation)}", end='')
+               last_derivation = right_side_derivation
+          print('')
           return None
